@@ -10,7 +10,6 @@ using WebApplication6.DAL.Interfaces;
 
 namespace WebApplication6.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     public class AddTransportController : ControllerBase
     {
@@ -30,6 +29,7 @@ namespace WebApplication6.API.Controllers
             transport.year = transportModel.year;
             transport.fuelType = transportModel.fuelType;
             transport.fuelConsumption = transportModel.fuelConsumption;
+            transport.userId = user.id;
             _db.Transports.Create(transport);
             _db.Save();
             return Ok(transport);

@@ -9,7 +9,6 @@ using WebApplication6.DAL.Entities;
 using WebApplication6.DAL.Interfaces;
 namespace WebApplication6.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     public class GetListTransportController : ControllerBase
     {
@@ -20,8 +19,8 @@ namespace WebApplication6.API.Controllers
             _db = uow;
         }
 
-        [HttpGet]
-        public async Task<ICollection<Transport>> GetTransports([FromBody] UserModel userModel)
+        [HttpPost]
+        public async Task<ActionResult<string>> GetTransports([FromBody] UserModel userModel)
         {
             int id = _db.Users.GetAll().Where(x => x.login == userModel.login).FirstOrDefault().id;
             List <Transport> transports = _db.Transports.GetAll().ToList();
@@ -34,7 +33,7 @@ namespace WebApplication6.API.Controllers
                 }
 
             }
-            return userTransports;
+            return Ok(userTransports);
         }
     }
 }
