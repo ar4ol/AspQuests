@@ -30,7 +30,7 @@ namespace WebApplication6.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> ChangeProfile(UserModel userModel)
+        public async Task<ActionResult<User>> ChangeProfile([FromBody] UserModel userModel)
         {
             User user = _db.Users.GetAll().ToList().Find(x => x.id == userModel.id);
             user.name = userModel.name;

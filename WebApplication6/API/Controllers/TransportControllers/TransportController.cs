@@ -11,7 +11,6 @@ using WebApplication6.DAL.Interfaces;
 namespace WebApplication6.API.Controllers
 {
 
-    [Authorize]
     [Route("api/[controller]")]
     public class TransportController : ControllerBase
     {
@@ -35,7 +34,7 @@ namespace WebApplication6.API.Controllers
         {
             _db.Transports.Delete(transportModel.id);
             _db.Save();
-            return Ok();
+            return Ok(transportModel.id);
         }
 
         [Route("change")]

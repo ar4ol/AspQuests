@@ -23,13 +23,13 @@ namespace WebApplication6.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Transport>> AddTransport([FromBody] TransportModel transportModel)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.login == transportModel.userLogin);
+            User user = _db.Users.GetAll().ToList().Find(x => x.id == transportModel.userId);
             Transport transport = new Transport();
             transport.name= transportModel.name;
             transport.year = transportModel.year;
             transport.fuelType = transportModel.fuelType;
             transport.fuelConsumption = transportModel.fuelConsumption;
-            transport.userId = user.id;
+            transport.userId = transportModel.userId;
             _db.Transports.Create(transport);
             _db.Save();
             return Ok(transport);

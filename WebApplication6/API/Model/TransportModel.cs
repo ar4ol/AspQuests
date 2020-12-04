@@ -8,7 +8,6 @@ namespace WebApplication6.API.Model
     public class TransportModel
     {
         public int id { get; set; }
-        public string userLogin { get; set; }
         public string name { get; set; }
         public int year { get; set; }
         public string fuelType { get; set; }
