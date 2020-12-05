@@ -23,10 +23,15 @@ namespace WebApplication6.API.Controllers
         }
 
         [Route("all")]
-        [HttpGet]
-        public async Task<ICollection<User>> GetAll()
+        [HttpPost]
+        public async Task<ICollection<User>> GetAll([FromBody] UserModel userModel)
         {
-            return _db.Users.GetAll().ToList();
+            User user = _db.Users.GetAll().ToList().Find(x => x.id == userModel.id);
+            if(user.role == "admin")
+            {
+                return _db.Users.GetAll().ToList();
+            }
+            return (ICollection<User>) new NotFoundObjectResult(user);
         }
 
         [Route("{id}")]

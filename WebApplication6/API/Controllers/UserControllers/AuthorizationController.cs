@@ -33,7 +33,7 @@ namespace WebApplication6.API.Controllers
             }
 
             User user = _db.Users.GetAll().ToList().Find(x => x.login == userModel.login && x.password == userModel.password);
-            user.role = "user";
+            
 
             var response = new {
                 access_token = TokenCreateService.CreateToken(identity).Result.Value,
