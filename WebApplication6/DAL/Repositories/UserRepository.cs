@@ -10,38 +10,38 @@ namespace WebApplication6.DAL.Repositories
 {
     public class UserRepository : IRepository<User>
     {
-        private ApplicationContext Db;
+        private ApplicationContext _db;
 
         public UserRepository(ApplicationContext applicationContext)
         {
-            Db = applicationContext;
+            _db = applicationContext;
         }
 
         public IEnumerable<User> GetAll()
         {
-            return Db.Users;
+            return _db.Users;
         }
 
         public User Get(int id)
         {
-            return Db.Users.Find(id);
+            return _db.Users.Find(id);
         }
 
         public void Create(User item)
         {
-            Db.Users.Add(item);
+            _db.Users.Add(item);
         }
 
         public void Update(User item)
         {
-            Db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
 
         public void Delete(int id)
         {
-            User t = Db.Users.Find(id);
+            User t = _db.Users.Find(id);
             if (t != null)
-                Db.Users.Remove(t);
+                _db.Users.Remove(t);
         }
     }
 }

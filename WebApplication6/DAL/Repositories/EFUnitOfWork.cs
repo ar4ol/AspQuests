@@ -12,10 +12,10 @@ namespace WebApplication6.DAL.Repositories
     public class EFUnitOfWork : IUnitOfWork
     {
         private ApplicationContext _db;
-        private UserRepository userRepository;
-        private TransportRepository transportRepository;
-        private PointRepository pointRepository;
-        private TripRepository tripRepository;
+        private UserRepository _userRepository;
+        private TransportRepository _transportRepository;
+        private PointRepository _pointRepository;
+        private TripRepository _tripRepository;
 
         public EFUnitOfWork(ApplicationContext db)
         {
@@ -25,9 +25,9 @@ namespace WebApplication6.DAL.Repositories
         {
             get
             {
-                if (userRepository == null)
-                    userRepository = new UserRepository(_db);
-                return userRepository;
+                if (_userRepository == null)
+                    _userRepository = new UserRepository(_db);
+                return _userRepository;
             }
         }
 
@@ -35,9 +35,9 @@ namespace WebApplication6.DAL.Repositories
         {
             get
             {
-                if (transportRepository == null)
-                    transportRepository = new TransportRepository(_db);
-                return transportRepository;
+                if (_transportRepository == null)
+                    _transportRepository = new TransportRepository(_db);
+                return _transportRepository;
             }
         }
 
@@ -45,9 +45,9 @@ namespace WebApplication6.DAL.Repositories
         {
             get
             {
-                if (pointRepository == null)
-                    pointRepository = new PointRepository(_db);
-                return pointRepository;
+                if (_pointRepository == null)
+                    _pointRepository = new PointRepository(_db);
+                return _pointRepository;
             }
         }
 
@@ -55,9 +55,9 @@ namespace WebApplication6.DAL.Repositories
         {
             get
             {
-                if (tripRepository == null)
-                    tripRepository = new TripRepository(_db);
-                return tripRepository;
+                if (_tripRepository == null)
+                    _tripRepository = new TripRepository(_db);
+                return _tripRepository;
             }
         }
 

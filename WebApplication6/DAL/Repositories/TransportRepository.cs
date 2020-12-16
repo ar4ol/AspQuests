@@ -10,38 +10,38 @@ namespace WebApplication6.DAL.Repositories
 {
     public class TransportRepository : IRepository<Transport>
     {
-        private ApplicationContext Db;
+        private ApplicationContext _db;
 
         public TransportRepository(ApplicationContext applicationContext)
         {
-            Db = applicationContext;
+            _db = applicationContext;
         }
 
         public IEnumerable<Transport> GetAll()
         {
-            return Db.Transports;
+            return _db.Transports;
         }
 
         public Transport Get(int id)
         {
-            return Db.Transports.Find(id);
+            return _db.Transports.Find(id);
         }
 
         public void Create(Transport item)
         {
-            Db.Transports.Add(item);
+            _db.Transports.Add(item);
         }
 
         public void Update(Transport item)
         {
-            Db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
 
         public void Delete(int id)
         {
-            Transport t = Db.Transports.Find(id);
+            Transport t = _db.Transports.Find(id);
             if (t != null)
-                Db.Transports.Remove(t);
+                _db.Transports.Remove(t);
         }
     }
 }

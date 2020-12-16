@@ -22,12 +22,12 @@ namespace WebApplication6.BLL.Services
 
         public ClaimsIdentity GetIdentity(string username, string password)
         {            
-            User user = _db.Users.GetAll().ToList().Find(x => x.login == username && x.password == password);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == username && x.Password == password);
             if (user != null)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.login)
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login)
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

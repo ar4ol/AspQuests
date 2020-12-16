@@ -22,9 +22,9 @@ namespace WebApplication6.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Transport>> TransportInfo([FromBody] TransportModel transportModel)
+        public async Task<ActionResult<Transport>> TransportInfo(int id)
         {
-            Transport transport = _db.Transports.Get(transportModel.id);
+            Transport transport = _db.Transports.Get(id);
             return transport;
         }
 
@@ -32,20 +32,20 @@ namespace WebApplication6.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Transport>> DeleteTransport([FromBody] TransportModel transportModel)
         {
-            _db.Transports.Delete(transportModel.id);
+            _db.Transports.Delete(transportModel.Id);
             _db.Save();
-            return Ok(transportModel.id);
+            return Ok(transportModel.Id);
         }
 
         [Route("change")]
         [HttpPost]
         public async Task<ActionResult<Transport>> ChangeTransport([FromBody] TransportModel transportModel)
         {
-            Transport transport = _db.Transports.Get(transportModel.id);
-            transport.name = transportModel.name;
-            transport.year = transportModel.year;
-            transport.fuelConsumption = transportModel.fuelConsumption;
-            transport.fuelType = transportModel.fuelType;
+            Transport transport = _db.Transports.Get(transportModel.Id);
+            transport.Name = transportModel.Name;
+            transport.Year = transportModel.Year;
+            transport.FuelConsumption = transportModel.FuelConsumption;
+            transport.FuelType = transportModel.FuelType;
             _db.Transports.Update(transport);
             _db.Save();
             return Ok();

@@ -26,8 +26,8 @@ namespace WebApplication6.API.Controllers
         [HttpPost]
         public async Task<ICollection<User>> GetAll([FromBody] UserModel userModel)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.id == userModel.id);
-            if(user.role == "admin")
+            User user = _db.Users.GetAll().ToList().Find(x => x.Id == userModel.Id);
+            if(user.Role == "admin")
             {
                 return _db.Users.GetAll().ToList();
             }
@@ -38,7 +38,7 @@ namespace WebApplication6.API.Controllers
         [HttpGet]
         public async Task<ActionResult<User>> ShowProfile(int id)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.id == id);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Id == id);
             return new ObjectResult(user);
         }
 
@@ -46,14 +46,23 @@ namespace WebApplication6.API.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> ChangeProfile([FromBody]UserModel userModel)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.id == userModel.id);
-            user.login = userModel.login;
-            user.name = userModel.name;
-            user.surname = userModel.surname;
-            user.password = userModel.password;
+            User user = _db.Users.GetAll().ToList().Find(x => x.Id == userModel.Id);
+            user.Login = userModel.Login;
+            user.Name = userModel.Name;
+            user.Surname = userModel.Surname;
+            user.Password = userModel.Password;
             _db.Users.Update(user);
             _db.Save();
             return Ok(user);
+        }
+
+        [Route("deleteuser")]
+        [HttpPost]
+        public async Task<ActionResult> DeleteUser ([FromBody] UserModel userModel)
+        {
+            _db.Users.Delete(userModel.Id);
+            _db.Save();
+            return Ok();
         }
     }
 }

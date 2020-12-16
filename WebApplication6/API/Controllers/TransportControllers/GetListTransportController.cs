@@ -22,12 +22,12 @@ namespace WebApplication6.API.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> GetTransports([FromBody] UserModel userModel)
         {
-            int id = _db.Users.GetAll().Where(x => x.login == userModel.login).FirstOrDefault().id;
+            int id = _db.Users.GetAll().Where(x => x.Login == userModel.Login).FirstOrDefault().Id;
             List <Transport> transports = _db.Transports.GetAll().ToList();
             List<Transport> userTransports = new List<Transport>();
             foreach(Transport t in transports)
             {
-                if(t.userId == id)
+                if(t.UserId == id)
                 {
                     userTransports.Add(t);
                 }

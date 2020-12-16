@@ -28,20 +28,20 @@ namespace WebApplication6.API.Controllers
             User user = new User();
             RegistrationService registrationService = new RegistrationService(_db);
 
-            bool alredyreregister = registrationService.CheckAlreadyRegister(userModel.login);
+            bool alredyreregister = registrationService.CheckAlreadyRegister(userModel.Login);
             if (!alredyreregister)
             {                
-                user.login = userModel.login;
-                user.password = userModel.password;
-                user.name = userModel.name;
-                user.surname = userModel.surname;
-                user.role = "user";
+                user.Login = userModel.Login;
+                user.Password = userModel.Password;
+                user.Name = userModel.Name;
+                user.Surname = userModel.Surname;
+                user.Role = "user";
                 _db.Users.Create(user);
                 _db.Save();
             }
             
             AuthorizationService authService = new AuthorizationService(_db);
-            var identity = authService.GetIdentity(user.login, user.password);
+            var identity = authService.GetIdentity(user.Login, user.Password);
             object response;
 
             if (!alredyreregister)

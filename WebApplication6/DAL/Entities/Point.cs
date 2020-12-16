@@ -7,10 +7,14 @@ namespace WebApplication6.DAL.Entities
 {
     public class Point
     {
-        public int id { get; set; }
-        public float latitude { get; set; }
-        public float longitude { get; set; }
-        public int time  { get; set; }
-        public int tripId { get; set; }
+        public int Id { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public DateTime Time  { get; set; }
+
+        public int TripId { get; set; }
     }
 }

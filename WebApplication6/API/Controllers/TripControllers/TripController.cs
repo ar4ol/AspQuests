@@ -10,8 +10,7 @@ using WebApplication6.DAL.Entities;
 using WebApplication6.DAL.Interfaces;
 
 namespace WebApplication6.API.Controllers.TripControllers
-{
-    [Authorize]
+{                                                 
     [Route("api/[controller]")]
     public class TripController : ControllerBase
     {
@@ -23,84 +22,95 @@ namespace WebApplication6.API.Controllers.TripControllers
         }
 
 
-        [Route("clienttripstart")]
-        [HttpPost]
-        public async Task<ActionResult<Trip>> TripStart([FromBody] TransportModel transportModel)
+        [Route("clienttripstart/{id}")]
+        [HttpGet]
+        public async Task<ActionResult<Trip>> TripStart(int id)
         {
             Trip trip = new Trip();
-            trip.transportId = transportModel.id;
+            trip.TransportId = id;
             _db.Trips.Create(trip);
             _db.Save();
             trip = _db.Trips.GetAll().Last();
-            Transport transport = _db.Transports.Get(transportModel.id);
-            transport.tripId = trip.id;
+            Transport transport = _db.Transports.Get(id);
+            transport.TripId = trip.Id;
             _db.Transports.Update(transport);
             _db.Save();
             return trip;
         }
 
 
-        [Route("clienttripend")]
-        [HttpPost]
-        public async Task<ActionResult<Transport>> TripEnd([FromBody] TransportModel transportModel)
+        [Route("clienttripend/{id}")]
+        [HttpGet]
+        public async Task<ActionResult<Transport>> TripEnd(int id)
         {            
-            Transport transport = _db.Transports.Get(transportModel.id);
-            transport.tripId = -1;
+            Transport transport = _db.Transports.Get(id);
+            transport.TripId = -1;
             _db.Transports.Update(transport);
             _db.Save();
             return Ok(transport);
         }
 
 
-        [Route("iottripfill")]
-        [HttpPost]
-        public async Task<ActionResult<Trip>> FillTripInfo([FromBody] TripModel tripModel)
-        {          
-
-            Transport transport = _db.Transports.Get(tripModel.transportId);
+        [Route("iottripfill/{tripId}:{latitude}:{longitude}:{distance}:{speed}")]
+        [HttpGet]
+        public async Task<string/*ActionResult<Trip>*/> FillTripInfo([FromRoute] int tripId, [FromRoute] double latitude, [FromRoute] double longitude, [FromRoute] double distance, [FromRoute] double speed)
+        {
+            Trip trip = _db.Trips.Get(tripId);
+            Transport transport = _db.Transports.Get(trip.TransportId);
 
             if(TripService.TransportInUsing(transport) == false) //если машина не находится в использовании, не создавать поездку и не заполнять про нее информацию
             {
-                return Ok(null);
+                return "Car not in using!";
             }
-            
-            Trip trip = _db.Trips.Get(transport.tripId);
 
-            TripService.TripCreated(ref trip, tripModel); // если поездка не начата, создаем поездку
+            TripService.TripCreated(ref trip); // если поездка не начата, создаем поездку    
+            TripService.TripFill(ref trip, distance, speed);
 
             Point point = new Point();
-            point.latitude = tripModel.latitude;
-            point.longitude = tripModel.longitude;
-            point.time = tripModel.time;
+
+            PointService.PointCreate(ref point, latitude, longitude, tripId);
+            
             _db.Points.Create(point);
             _db.Save();
 
-            trip.passedRoute.Add(_db.Points.GetAll().Where(x => x.time == point.time).FirstOrDefault());
-            trip.distance += tripModel.distance;
-            trip.maxSpeed = tripModel.maxSpeed;
-            trip.minSpeed = tripModel.minSpeed;
-            trip.moveEnd = tripModel.moveEnd;
-            trip.speed = tripModel.speed;
+            
 
             _db.Trips.Update(trip);
             _db.Save();
-            return Ok(trip);
+            return "Ok";
         }
 
 
-        [Route("clienttripinfo")]
+        [Route("clienttripinfo/{carId}")]
         [HttpGet]
-        public async Task<ActionResult<Trip>> GetTripInfo([FromBody] TransportModel transportModel)
+        public async Task<string> СlientTripInfo(string carId)
         {
-            Transport transport = _db.Transports.Get(transportModel.id); 
+            Transport transport = _db.Transports.Get(Convert.ToInt32(carId)); 
 
             if(TripService.TransportInUsing(transport) == false) //если машина не находится в использовании, не выводить информацию про ее поездку
             {
-                return Ok(null);
+                return "Car not in using!";
             }
 
-            Trip trip = _db.Trips.Get(transport.tripId);
-            return trip;
+            return Convert.ToString(transport.TripId);
+        }
+
+        [Route("gettripinfo")]
+        [HttpPost]
+        public async Task<ActionResult<string>> GetTripInfo([FromBody] Trip tripModel)
+        {
+            Trip trip = _db.Trips.Get(tripModel.Id);
+                        
+            return Ok(trip);
+        }
+
+        [Route("getlocation")]
+        [HttpPost]
+        public async Task<ActionResult<Point>> GetLocation([FromBody] Trip tripModel)
+        {
+            Trip trip = _db.Trips.Get(tripModel.Id);
+            Point point = _db.Points.GetAll().ToList().FindLast(x => x.TripId == trip.Id);
+            return Ok(point);
         }
 
     }

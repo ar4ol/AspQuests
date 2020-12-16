@@ -21,7 +21,7 @@ namespace WebApplication6.BLL.Services
 
         public bool CheckAlreadyRegister(string login)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.login == login);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == login);
             return user != null;
         }
     }

@@ -25,18 +25,18 @@ namespace WebApplication6.API.Controllers
         [HttpGet]
         public async Task<ActionResult<User>> ShowProfile(UserModel userModel)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.login == userModel.login);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == userModel.Login);
             return new ObjectResult(user);
         }
 
         [HttpPost]
         public async Task<ActionResult<User>> ChangeProfile([FromBody] UserModel userModel)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.id == userModel.id);
-            user.name = userModel.name;
-            user.surname = userModel.surname;
-            user.login = userModel.login;
-            user.password = userModel.password;
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == userModel.Login);
+            user.Name = userModel.Name;
+            user.Surname = userModel.Surname;
+            user.Login = userModel.Login;
+            user.Password = userModel.Password;
             _db.Users.Update(user);
             _db.Save();
             return Ok(user);

@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication6.DAL.Entities;
 
-namespace WebApplication6.DAL.Entities
+namespace WebApplication6.API.Model
 {
-    public class Trip
+    public class TripModel
     {
-        public int Id { get; set; }
+        public int TransportId { get; set; }
+
+        public float Latitude { get; set; }
+
+        public float Longitude { get; set; }
+
+        public int Time { get; set; }
 
         public double Distance { get; set; }
 
@@ -20,9 +27,5 @@ namespace WebApplication6.DAL.Entities
         public DateTime MoveStart { get; set; }
 
         public DateTime MoveEnd { get; set; }
-
-        public int TransportId { get; set; }
-
-        public bool Created { get; set; }
     }
 }

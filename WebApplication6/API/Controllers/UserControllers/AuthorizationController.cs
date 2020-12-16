@@ -25,14 +25,14 @@ namespace WebApplication6.API.Controllers
         public async Task<ActionResult<string>> Authorization(UserModel userModel)
         {
             AuthorizationService authService = new AuthorizationService(_db);
-            var identity = authService.GetIdentity(userModel.login, userModel.password);
+            var identity = authService.GetIdentity(userModel.Login, userModel.Password);
             
             if (identity == null)
             {
                 return "Invalid username or password.";
             }
 
-            User user = _db.Users.GetAll().ToList().Find(x => x.login == userModel.login && x.password == userModel.password);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == userModel.Login && x.Password == userModel.Password);
             
 
             var response = new {

@@ -9,19 +9,27 @@ namespace WebApplication6.BLL.BusinessModel
 {
     public class TripService
     {
-        public static void TripCreated(ref Trip trip, TripModel tripModel)
+        public static void TripCreated(ref Trip trip)
         {
-            if (trip.created != true)
+            if (trip.Created != true)
             {
-                trip.passedRoute = new List<Point>();
-                trip.moveStart = tripModel.moveStart;
-                trip.created = true;
+                trip.MoveStart = DateTime.Now;
+                trip.Created = true;
             }
+        }
+
+        public static void TripFill(ref Trip trip, double distance, double speed)
+        {
+            trip.Distance += distance;
+            trip.MaxSpeed = speed > trip.MaxSpeed ? Convert.ToInt32(speed) : trip.MaxSpeed;
+            trip.MinSpeed = speed < trip.MinSpeed ? Convert.ToInt32(speed) : trip.MinSpeed;
+            trip.MoveEnd = DateTime.Now;
+            trip.Speed = speed;
         }
 
         public static bool TransportInUsing(Transport transport)
         {
-            return transport.tripId != -1;
-        }
+            return transport.TripId != -1;
+        }        
     }
 }

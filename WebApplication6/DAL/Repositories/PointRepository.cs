@@ -10,38 +10,38 @@ namespace WebApplication6.DAL.Repositories
 {
     public class PointRepository : IRepository<Point>
     {
-        private ApplicationContext Db;
+        private ApplicationContext _db;
 
         public PointRepository(ApplicationContext applicationContext)
         {
-            Db = applicationContext;
+            _db = applicationContext;
         }
 
         public IEnumerable<Point> GetAll()
         {
-            return Db.Points;
+            return _db.Points;
         }
 
         public Point Get(int id)
         {
-            return Db.Points.Find(id);
+            return _db.Points.Find(id);
         }
 
         public void Create(Point item)
         {
-            Db.Points.Add(item);
+            _db.Points.Add(item);
         }
 
         public void Update(Point item)
         {
-            Db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
 
         public void Delete(int id)
         {
-            Point t = Db.Points.Find(id);
+            Point t = _db.Points.Find(id);
             if (t != null)
-                Db.Points.Remove(t);
+                _db.Points.Remove(t);
         }
     }
 }

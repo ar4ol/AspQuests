@@ -10,38 +10,38 @@ namespace WebApplication6.DAL.Repositories
 {
     public class TripRepository : IRepository<Trip>
     {
-        private ApplicationContext Db;
+        private ApplicationContext _db;
 
         public TripRepository(ApplicationContext applicationContext)
         {
-            Db = applicationContext;
+            _db = applicationContext;
         }
 
         public IEnumerable<Trip> GetAll()
         {
-            return Db.Trips;
+            return _db.Trips;
         }
 
         public Trip Get(int id)
         {
-            return Db.Trips.Find(id);
+            return _db.Trips.Find(id);
         }
 
         public void Create(Trip item)
         {
-            Db.Trips.Add(item);
+            _db.Trips.Add(item);
         }
 
         public void Update(Trip item)
         {
-            Db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
 
         public void Delete(int id)
         {
-            Trip t = Db.Trips.Find(id);
+            Trip t = _db.Trips.Find(id);
             if (t != null)
-                Db.Trips.Remove(t);
+                _db.Trips.Remove(t);
         }
     }
 }
