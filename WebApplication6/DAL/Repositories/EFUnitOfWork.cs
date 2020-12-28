@@ -16,11 +16,15 @@ namespace WebApplication6.DAL.Repositories
         private TransportRepository _transportRepository;
         private PointRepository _pointRepository;
         private TripRepository _tripRepository;
+        private RestRepository _restRepository;
+        private MarkRepository _markRepository;
+        private OfferRepository _offerRepository;
 
         public EFUnitOfWork(ApplicationContext db)
         {
             _db = db;
         }
+
         public IRepository<User> Users
         {
             get
@@ -28,6 +32,30 @@ namespace WebApplication6.DAL.Repositories
                 if (_userRepository == null)
                     _userRepository = new UserRepository(_db);
                 return _userRepository;
+            }
+        }
+
+        public IRepository<Rest> Rests {
+            get {
+                if (_restRepository == null)
+                    _restRepository = new RestRepository(_db);
+                return _restRepository;
+            }
+        }
+
+        public IRepository<Mark> Marks {
+            get {
+                if (_markRepository == null)
+                    _markRepository = new MarkRepository(_db);
+                return _markRepository;
+            }
+        }
+
+        public IRepository<Offer> Offers {
+            get {
+                if (_offerRepository == null)
+                    _offerRepository = new OfferRepository(_db);
+                return _offerRepository;
             }
         }
 

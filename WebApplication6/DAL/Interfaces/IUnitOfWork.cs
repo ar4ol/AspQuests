@@ -12,6 +12,9 @@ namespace WebApplication6.DAL.Interfaces
         IRepository<Transport> Transports { get; }
         IRepository<Point> Points { get; }
         IRepository<Trip> Trips { get; }
+        IRepository<Rest> Rests { get; }
+        IRepository<Mark> Marks { get; }
+        IRepository<Offer> Offers { get; }
 
         void Save();
     }
