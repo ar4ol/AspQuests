@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication6.DAL.Entities
 {
-    public class Task
+    public class Excercise
     {
         public int Id { get; set; }
 

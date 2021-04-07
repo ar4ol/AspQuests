@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApplication6.DAL.Interfaces;
 using WebApplication6.DAL.Entities;
 using WebApplication6.EF;
@@ -23,6 +22,30 @@ namespace WebApplication6.DAL.Repositories
         {
             get
             {
+                if (_userRepository == null)
+                    _userRepository = new UserRepository(_db);
+                return _userRepository;
+            }
+        }
+
+        public IRepository<Quest> Quests {
+            get {
+                if (_userRepository == null)
+                    _userRepository = new UserRepository(_db);
+                return _userRepository;
+            }
+        }
+
+        public IRepository<Zone> Zones {
+            get {
+                if (_userRepository == null)
+                    _userRepository = new UserRepository(_db);
+                return _userRepository;
+            }
+        }
+
+        public IRepository<Excercise> Excercises {
+            get {
                 if (_userRepository == null)
                     _userRepository = new UserRepository(_db);
                 return _userRepository;

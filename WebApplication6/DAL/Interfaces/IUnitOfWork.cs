@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApplication6.DAL.Entities;
 
 namespace WebApplication6.DAL.Interfaces
@@ -9,6 +8,9 @@ namespace WebApplication6.DAL.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IRepository<User> Users { get; }
+        IRepository<Quest> Quests { get; }
+        IRepository<Zone> Zones { get; }
+        IRepository<Excercise> Excercises { get; }
 
         void Save();
     }

@@ -10,6 +10,9 @@ namespace WebApplication6.EF
     public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Quest> Quests { get; set; }
+        public DbSet<Zone> Zones { get; set; }
+        public DbSet<Excercise> Excercises { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
