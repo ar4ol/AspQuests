@@ -40,22 +40,19 @@ namespace WebApplication6.API.Controllers
                 _db.Save();
             }
             
-            AuthorizationService authService = new AuthorizationService(_db);
-            var identity = authService.GetIdentity(user.Login, user.Password);
             object response;
 
             if (!alredyreregister)
             {
                 response = new {
                     message = "Registration success!",
-                    user = user,
-                    access_token = TokenCreateService.CreateToken(identity).Result.Value
+                    user = user
                 };
             }
             else
             {
                 response = new {
-                    message = "Registration success!"
+                    message = "User with the same login already register!"
                 };
             }
 

@@ -25,9 +25,9 @@ namespace WebApplication6.API.Controllers
         public async Task<ActionResult<string>> Authorization(UserModel userModel)
         {
             AuthorizationService authService = new AuthorizationService(_db);
-            var identity = authService.GetIdentity(userModel.Login, userModel.Password);
+            bool identity = authService.GetIdentity(userModel.Login, userModel.Password);
             
-            if (identity == null)
+            if (!identity)
             {
                 return "Invalid username or password.";
             }
@@ -36,7 +36,6 @@ namespace WebApplication6.API.Controllers
             
 
             var response = new {
-                access_token = TokenCreateService.CreateToken(identity).Result.Value,
                 user = user
             };
 

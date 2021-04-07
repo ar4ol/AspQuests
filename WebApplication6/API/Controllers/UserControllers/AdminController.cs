@@ -8,6 +8,7 @@ using WebApplication6.DAL.Entities;
 using System.Linq;
 using System.Text.Json;
 using System.Collections.Generic;
+using System;
 
 namespace WebApplication6.API.Controllers
 {
@@ -22,6 +23,12 @@ namespace WebApplication6.API.Controllers
             _db = unitOfWork;
         }
 
+        [HttpGet("{x}/{y}/{z}")]
+        public void Get([FromRoute] decimal x, [FromRoute] decimal y, [FromRoute] decimal z)
+        {
+            Console.WriteLine($"X: {x} Y: {y}, Z: {z}");
+        }
+
         [Route("all")]
         [HttpPost]
         public async Task<ICollection<User>> GetAll([FromBody] UserModel userModel)
@@ -29,7 +36,7 @@ namespace WebApplication6.API.Controllers
             User user = _db.Users.GetAll().ToList().Find(x => x.Id == userModel.Id);
             if(user.Role == "admin")
             {
-                return _db.Users.GetAll().ToList();
+                return  _db.Users.GetAll().ToList();
             }
             return (ICollection<User>) new NotFoundObjectResult(user);
         }
@@ -58,7 +65,7 @@ namespace WebApplication6.API.Controllers
 
         [Route("deleteuser")]
         [HttpPost]
-        public async Task<ActionResult> DeleteUser ([FromBody] UserModel userModel)
+        public async Task<ActionResult> DeleteUser([FromBody] UserModel userModel)
         {
             _db.Users.Delete(userModel.Id);
             _db.Save();

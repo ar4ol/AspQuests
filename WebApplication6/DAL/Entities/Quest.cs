@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace WebApplication6.DAL.Entities
 {
-    public class Offer
+    public class Quest
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public User User { get; set; }
 
-        public int RestId { get; set; }
+        public string Name { get; set; }
 
-        public string Date { get; set; }
+        public List<int> Route { get; set; }
     }
 }

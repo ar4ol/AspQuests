@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace WebApplication6.DAL.Entities
 {
-    public class Mark
+    public class Zone
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public Quest Quest { get; set; }
 
-        public int RestId { get; set; }
+        public string Name { get; set; }
 
-        public int Value { get; set; }
+        public int CountPeople { get; set; }
     }
 }

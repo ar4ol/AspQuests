@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication6.API.Controllers
 {
-    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProfileController : ControllerBase

@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication6.EF;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using WebApplication6.API.JWT;
 using WebApplication6.DAL.Interfaces;
 using WebApplication6.DAL.Repositories;
 using WebApplication6.DAL.Entities;
@@ -32,7 +31,7 @@ namespace WebApplication6
             // устанавливаем контекст данных
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(con));
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            /*services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options => {
                         options.RequireHttpsMetadata = false;
                         options.TokenValidationParameters = new TokenValidationParameters {
@@ -53,12 +52,11 @@ namespace WebApplication6
                             // валидация ключа безопасности
                             ValidateIssuerSigningKey = true,
                         };
-                    });
+                    });*/
 
             services.AddTransient<IUnitOfWork, EFUnitOfWork>();
 
             
-
             services.AddControllers(); // используем контроллеры без представлений
 
         }
