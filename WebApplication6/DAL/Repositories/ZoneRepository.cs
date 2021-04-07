@@ -9,7 +9,7 @@ using WebApplication6.EF;
 
 namespace WebApplication6.DAL.Repositories
 {
-    public class ZoneRepository
+    public class ZoneRepository : IRepository<Zone>
     {
         private ApplicationContext _db;
 

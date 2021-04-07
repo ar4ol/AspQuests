@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication6.EF;
 using WebApplication6.BLL.Services;
-using WebApplication6.API.Model;
+using WebApplication6.API.ViewModels;
 using WebApplication6.DAL.Entities;
 using WebApplication6.DAL.Repositories;
 using WebApplication6.DAL.Interfaces;
@@ -23,18 +23,18 @@ namespace WebApplication6.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<string>> Registration([FromBody] UserModel userModel)
+        public async Task<ActionResult<string>> Registration([FromBody] UserVM UserVM)
         {
             User user = new User();
             RegistrationService registrationService = new RegistrationService(_db);
 
-            bool alredyreregister = registrationService.CheckAlreadyRegister(userModel.Login);
+            bool alredyreregister = registrationService.CheckAlreadyRegister(UserVM.Login);
             if (!alredyreregister)
             {                
-                user.Login = userModel.Login;
-                user.Password = userModel.Password;
-                user.Name = userModel.Name;
-                user.Surname = userModel.Surname;
+                user.Login = UserVM.Login;
+                user.Password = UserVM.Password;
+                user.Name = UserVM.Name;
+                user.Surname = UserVM.Surname;
                 user.Role = "user";
                 _db.Users.Create(user);
                 _db.Save();

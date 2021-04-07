@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebApplication6.DAL.Interfaces;
 using WebApplication6.DAL.Repositories;
 using WebApplication6.DAL.Entities;
+using Microsoft.OpenApi.Models;
 
 namespace WebApplication6
 {
@@ -27,7 +28,11 @@ namespace WebApplication6
                        .AllowAnyHeader();
             }));
 
-            string con = "Server=.\\SQLEXPRESS;Database=userdbstore;Trusted_Connection=True;";
+            services.AddSwaggerGen(options => {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "QuestCreator", Version = "v1" });
+            });
+
+                string con = "Server=.\\SQLEXPRESS;Database=userdbstore;Trusted_Connection=True;";
             // устанавливаем контекст данных
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(con));
 
@@ -67,7 +72,9 @@ namespace WebApplication6
 
             app.UseDeveloperExceptionPage();
 
-            
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TheRockPaperScissorsGame.API"));
+
             app.UseAuthentication();
             app.UseAuthorization();
 

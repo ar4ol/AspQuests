@@ -61,3 +61,8 @@ C:\Users\Artem\source\repos\WebApplication6\WebApplication6\obj\Debug\netcoreapp
 C:\Users\Artem\source\repos\WebApplication6\WebApplication6\obj\Debug\netcoreapp3.1\WebApplication6.csproj.CoreCompileInputs.cache
 C:\Users\Artem\source\repos\WebApplication6\WebApplication6\obj\Debug\netcoreapp3.1\scopedcss\bundle\WebApplication6.styles.css
 C:\Users\Artem\source\repos\WebApplication6\WebApplication6\obj\Debug\netcoreapp3.1\WebApplication6.genruntimeconfig.cache
+C:\Users\Artem\source\repos\WebApplication6\WebApplication6\obj\Debug\netcoreapp3.1\WebApplication6.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Artem\source\repos\WebApplication6\WebApplication6\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Artem\source\repos\WebApplication6\WebApplication6\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Artem\source\repos\WebApplication6\WebApplication6\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Artem\source\repos\WebApplication6\WebApplication6\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

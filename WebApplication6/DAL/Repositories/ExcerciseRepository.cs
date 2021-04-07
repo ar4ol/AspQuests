@@ -8,7 +8,7 @@ using WebApplication6.EF;
 
 namespace WebApplication6.DAL.Repositories
 {
-    public class ExcerciseRepository
+    public class ExcerciseRepository : IRepository<Excercise>
     {
         private ApplicationContext _db;
 

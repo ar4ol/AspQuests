@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication6.EF;
 using WebApplication6.BLL.Services;
 using WebApplication6.DAL.Entities;
-using WebApplication6.API.Model;
+using WebApplication6.API.ViewModels;
 using WebApplication6.DAL.Interfaces;
 using WebApplication6.BLL.Interfaces;
 

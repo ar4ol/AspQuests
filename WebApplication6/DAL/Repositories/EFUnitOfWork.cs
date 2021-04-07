@@ -12,6 +12,9 @@ namespace WebApplication6.DAL.Repositories
     {
         private ApplicationContext _db;
         private UserRepository _userRepository;
+        private QuestRepository _questRepository;
+        private ZoneRepository _zoneRepository;
+        private ExcerciseRepository _excerciseRepository;
 
         public EFUnitOfWork(ApplicationContext db)
         {
@@ -30,25 +33,25 @@ namespace WebApplication6.DAL.Repositories
 
         public IRepository<Quest> Quests {
             get {
-                if (_userRepository == null)
-                    _userRepository = new UserRepository(_db);
-                return _userRepository;
+                if (_questRepository == null)
+                    _questRepository = new QuestRepository(_db);
+                return _questRepository;
             }
         }
 
         public IRepository<Zone> Zones {
             get {
-                if (_userRepository == null)
-                    _userRepository = new UserRepository(_db);
-                return _userRepository;
+                if (_zoneRepository == null)
+                    _zoneRepository = new ZoneRepository(_db);
+                return _zoneRepository;
             }
         }
 
         public IRepository<Excercise> Excercises {
             get {
-                if (_userRepository == null)
-                    _userRepository = new UserRepository(_db);
-                return _userRepository;
+                if (_excerciseRepository == null)
+                    _excerciseRepository = new ExcerciseRepository(_db);
+                return _excerciseRepository;
             }
         }
 

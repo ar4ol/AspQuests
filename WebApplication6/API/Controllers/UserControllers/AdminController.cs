@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication6.EF;
 using WebApplication6.BLL.Services;
-using WebApplication6.API.Model;
+using WebApplication6.API.ViewModels;
 using WebApplication6.DAL.Interfaces;
 using System.Threading.Tasks;
 using WebApplication6.DAL.Entities;
@@ -23,17 +23,11 @@ namespace WebApplication6.API.Controllers
             _db = unitOfWork;
         }
 
-        [HttpGet("{x}/{y}/{z}")]
-        public void Get([FromRoute] decimal x, [FromRoute] decimal y, [FromRoute] decimal z)
-        {
-            Console.WriteLine($"X: {x} Y: {y}, Z: {z}");
-        }
-
         [Route("all")]
         [HttpPost]
-        public async Task<ICollection<User>> GetAll([FromBody] UserModel userModel)
+        public async Task<ICollection<User>> GetAll([FromBody] UserVM UserVM)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.Id == userModel.Id);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Id == UserVM.Id);
             if(user.Role == "admin")
             {
                 return  _db.Users.GetAll().ToList();
@@ -46,18 +40,18 @@ namespace WebApplication6.API.Controllers
         public async Task<ActionResult<User>> ShowProfile(int id)
         {
             User user = _db.Users.GetAll().ToList().Find(x => x.Id == id);
-            return new ObjectResult(user);
+            return Ok(user);
         }
 
         [Route("{id}")]
         [HttpPost]
-        public async Task<ActionResult<User>> ChangeProfile([FromBody]UserModel userModel)
+        public async Task<ActionResult<User>> ChangeProfile([FromBody]UserVM UserVM)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.Id == userModel.Id);
-            user.Login = userModel.Login;
-            user.Name = userModel.Name;
-            user.Surname = userModel.Surname;
-            user.Password = userModel.Password;
+            User user = _db.Users.GetAll().ToList().Find(x => x.Id == UserVM.Id);
+            user.Login = UserVM.Login;
+            user.Name = UserVM.Name;
+            user.Surname = UserVM.Surname;
+            user.Password = UserVM.Password;
             _db.Users.Update(user);
             _db.Save();
             return Ok(user);
@@ -65,9 +59,9 @@ namespace WebApplication6.API.Controllers
 
         [Route("deleteuser")]
         [HttpPost]
-        public async Task<ActionResult> DeleteUser([FromBody] UserModel userModel)
+        public async Task<ActionResult> DeleteUser([FromBody] UserVM UserVM)
         {
-            _db.Users.Delete(userModel.Id);
+            _db.Users.Delete(UserVM.Id);
             _db.Save();
             return Ok();
         }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication6.API.Model
+namespace WebApplication6.API.ViewModels
 {
-    public class UserModel
+    public class UserVM
     {
         public int Id { get; set; }
 

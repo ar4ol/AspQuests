@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication6.EF;
+using WebApplication6.API.ViewModels;
 using WebApplication6.BLL.Services;
 using WebApplication6.DAL.Entities;
-using WebApplication6.API.Model;
+
 using WebApplication6.DAL.Interfaces;
 using System.Threading.Tasks;
 using System.Linq;
@@ -22,20 +23,20 @@ namespace WebApplication6.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<User>> ShowProfile(UserModel userModel)
+        public async Task<ActionResult<User>> ShowProfile(UserVM UserVM)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.Login == userModel.Login);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == UserVM.Login);
             return new ObjectResult(user);
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> ChangeProfile([FromBody] UserModel userModel)
+        public async Task<ActionResult<User>> ChangeProfile([FromBody] UserVM UserVM)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.Login == userModel.Login);
-            user.Name = userModel.Name;
-            user.Surname = userModel.Surname;
-            user.Login = userModel.Login;
-            user.Password = userModel.Password;
+            User user = _db.Users.GetAll().ToList().Find(x => x.Login == UserVM.Login);
+            user.Name = UserVM.Name;
+            user.Surname = UserVM.Surname;
+            user.Login = UserVM.Login;
+            user.Password = UserVM.Password;
             _db.Users.Update(user);
             _db.Save();
             return Ok(user);
