@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication6.API.ViewModels
+namespace WebApplication6.ViewModels
 {
     public class UserVM
     {

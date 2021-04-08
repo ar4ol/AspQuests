@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication6.EF;
 using WebApplication6.BLL.Services;
-using WebApplication6.API.ViewModels;
+using WebApplication6.ViewModels;
 using WebApplication6.DAL.Entities;
 using WebApplication6.DAL.Repositories;
 using WebApplication6.DAL.Interfaces;
