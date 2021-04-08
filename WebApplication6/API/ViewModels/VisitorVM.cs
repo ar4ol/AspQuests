@@ -20,6 +20,8 @@ namespace WebApplication6.ViewModels
 
         public int QuestId { get; set; }
 
+        public int ZoneId { get; set; }
+
         public string CompletedRoute { get; set; }
     }
 }

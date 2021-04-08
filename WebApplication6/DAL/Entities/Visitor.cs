@@ -19,6 +19,8 @@ namespace WebApplication6.DAL.Entities
 
         public int QuestId { get; set; }
 
+        public int ZoneId { get; set; }
+
         public string CompletedRoute { get; set; }
     }
 }
