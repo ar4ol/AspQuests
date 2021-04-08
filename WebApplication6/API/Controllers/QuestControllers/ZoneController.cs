@@ -29,9 +29,10 @@ namespace WebApplication6.API.Controllers.QuestControllers
         {
             Zone zone = new Zone();
             zone.Name = zoneModel.Name;
-            zone.Quest = zoneModel.Quest;
+            zone.QuestId = zoneModel.QuestId;
             zone.CountPeople = 0;
             _db.Zones.Create(zone);
+            _db.Save();
             zone = _db.Zones.GetAll().Last();
             return zone;
         }
@@ -51,7 +52,8 @@ namespace WebApplication6.API.Controllers.QuestControllers
         public async Task<ActionResult<Zone>> Delete([FromBody] UserDeleteVM udModel)
         {
             Zone zone = _db.Zones.GetAll().ToList().Find(x => x.Id == udModel.ZoneId);
-            User user = zone.Quest.User;
+            Quest quest = _db.Quests.Get(zone.QuestId);
+            User user = _db.Users.Get(quest.UserId);
             if (user.Id == udModel.UserId)
             {
                 _db.Zones.Delete(zone.Id);

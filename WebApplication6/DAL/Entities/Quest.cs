@@ -9,7 +9,7 @@ namespace WebApplication6.DAL.Entities
     {
         public int Id { get; set; }
 
-        public User User { get; set; }
+        public int UserId { get; set; }
 
         public string Name { get; set; }
 

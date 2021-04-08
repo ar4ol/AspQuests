@@ -29,11 +29,11 @@ namespace WebApplication6.API.Controllers.QuestControllers
         {
             Quest quest = new Quest();
             quest.Name = questModel.Name;
-            quest.User = questModel.User;
+            quest.UserId = questModel.UserId;
             quest.Route = questModel.Route;
             _db.Quests.Create(quest);
-            quest = _db.Quests.GetAll().Last();
-            return quest;
+            _db.Save();
+            return _db.Quests.GetAll().ToList().LastOrDefault();
         }
 
         [Route("change")]
@@ -51,7 +51,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
         public async Task<ActionResult<Quest>> Delete([FromBody] UserDeleteVM udModel)
         {
             Quest quest = _db.Quests.GetAll().ToList().Find(x => x.Id == udModel.QuestId);
-            User user = quest.User;
+            User user = _db.Users.Get(quest.UserId);
             if (user.Id == udModel.UserId)
             {
                 _db.Quests.Delete(quest.Id);

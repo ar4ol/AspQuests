@@ -10,7 +10,7 @@ namespace WebApplication6.ViewModels
     {
         public int Id { get; set; }
 
-        public User User { get; set; }
+        public int UserId { get; set; }
 
         public string Name { get; set; }
 

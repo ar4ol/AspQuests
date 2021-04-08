@@ -10,7 +10,7 @@ namespace WebApplication6.ViewModels
     {
         public int Id { get; set; }
 
-        public Quest Quest { get; set; }
+        public int QuestId { get; set; }
 
         public string Name { get; set; }
 

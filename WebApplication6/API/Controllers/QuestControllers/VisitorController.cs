@@ -32,9 +32,14 @@ namespace WebApplication6.API.Controllers.QuestControllers
             Visitor visitor = new Visitor();
             visitor.Login = visitorModel.Login;
             visitor.Password = visitorModel.Password;
-            visitor.Quest = visitorModel.Quest;
+            visitor.QuestId = visitorModel.QuestId;
             visitor.Name = visitorModel.Name;
             visitor.Surname = visitorModel.Surname;
+
+            _db.Visitors.Create(visitor);
+            _db.Save();
+
+
             if (login != null)
             {
                 response = new {
@@ -59,7 +64,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
             Visitor visitor = _db.Visitors.GetAll().ToList().Find(x => x.Id == visitorModel.Id);
             visitor.Login = visitorModel.Login;
             visitor.Password = visitorModel.Password;
-            visitor.Quest = visitorModel.Quest;
+            visitor.QuestId = visitorModel.QuestId;
             visitor.Name = visitorModel.Name;
             visitor.Surname = visitorModel.Surname;
             _db.Visitors.Update(visitor);

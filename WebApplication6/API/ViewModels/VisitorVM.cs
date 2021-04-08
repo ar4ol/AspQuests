@@ -18,7 +18,7 @@ namespace WebApplication6.ViewModels
 
         public string Surname { get; set; }
 
-        public Quest Quest { get; set; }
+        public int QuestId { get; set; }
 
         public string CompletedRoute { get; set; }
     }

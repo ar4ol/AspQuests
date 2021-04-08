@@ -29,8 +29,9 @@ namespace WebApplication6.API.Controllers.QuestControllers
         {
             Excercise excercise = new Excercise();
             excercise.Name = excerciseModel.Name;
-            excercise.Zone = excerciseModel.Zone;
+            excercise.ZoneId = excerciseModel.ZoneId;
             _db.Excercises.Create(excercise);
+            _db.Save();
             excercise = _db.Excercises.GetAll().Last();
             return excercise;
         }
@@ -50,7 +51,9 @@ namespace WebApplication6.API.Controllers.QuestControllers
         public async Task<ActionResult<Excercise>> Delete([FromBody] UserDeleteVM ueModel)
         {
             Excercise excercise = _db.Excercises.Get(ueModel.ExerciseId);
-            User user = excercise.Zone.Quest.User;
+            Zone zone = _db.Zones.Get(excercise.ZoneId);
+            Quest quest = _db.Quests.Get(zone.QuestId);
+            User user = _db.Users.Get(quest.UserId);
             if(user.Id == ueModel.UserId)
             {
                 _db.Excercises.Delete(excercise.Id);

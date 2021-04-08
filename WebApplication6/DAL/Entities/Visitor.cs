@@ -17,6 +17,6 @@ namespace WebApplication6.DAL.Entities
 
         public string Surname { get; set; }
 
-        public Quest Quest { get; set; }
+        public int QuestId { get; set; }
     }
 }
