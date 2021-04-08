@@ -6,15 +6,20 @@ using WebApplication6.DAL.Entities;
 
 namespace WebApplication6.API.ViewModels
 {
-    public class ExcerciseVM
+    public class VisitorVM
     {
         public int Id { get; set; }
 
-        public Zone Zone { get; set; }
+        public string Login { get; set; }
+
+        public string Password { get; set; }
 
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string Surname { get; set; }
 
+        public Quest Quest { get; set; }
+
+        public string CompletedRoute { get; set; }
     }
 }

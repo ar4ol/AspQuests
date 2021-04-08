@@ -5,15 +5,18 @@ using System.Threading.Tasks;
 
 namespace WebApplication6.DAL.Entities
 {
-    public class Excercise
+    public class Visitor
     {
         public int Id { get; set; }
 
-        public Zone Zone { get; set; }
+        public string Login { get; set; }
+
+        public string Password { get; set; }
 
         public string Name { get; set; }
 
-        public string Description { get; set;  }
+        public string Surname { get; set; }
 
+        public Quest Quest { get; set; }
     }
 }

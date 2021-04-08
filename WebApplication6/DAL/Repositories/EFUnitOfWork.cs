@@ -15,6 +15,7 @@ namespace WebApplication6.DAL.Repositories
         private QuestRepository _questRepository;
         private ZoneRepository _zoneRepository;
         private ExcerciseRepository _excerciseRepository;
+        private VisitorRepository _visitorRepository;
 
         public EFUnitOfWork(ApplicationContext db)
         {
@@ -55,6 +56,14 @@ namespace WebApplication6.DAL.Repositories
             }
         }
 
+
+        public IRepository<Visitor> Visitors {
+            get {
+                if (_visitorRepository == null)
+                    _visitorRepository = new VisitorRepository(_db);
+                return _visitorRepository;
+            }
+        }
 
         public void Save()
         {

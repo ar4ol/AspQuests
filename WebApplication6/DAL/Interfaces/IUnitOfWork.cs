@@ -11,6 +11,7 @@ namespace WebApplication6.DAL.Interfaces
         IRepository<Quest> Quests { get; }
         IRepository<Zone> Zones { get; }
         IRepository<Excercise> Excercises { get; }
+        IRepository<Visitor> Visitors { get; }
 
         void Save();
     }
