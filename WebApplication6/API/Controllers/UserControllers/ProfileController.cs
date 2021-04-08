@@ -29,7 +29,7 @@ namespace WebApplication6.API.Controllers
             return new ObjectResult(user);
         }
 
-        [HttpPost]
+        [HttpPatch]
         public async Task<ActionResult<User>> ChangeProfile([FromBody] UserVM UserVM)
         {
             User user = _db.Users.GetAll().ToList().Find(x => x.Login == UserVM.Login);

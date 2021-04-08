@@ -25,7 +25,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
 
         [Route("create")]
         [HttpPost]
-        public async Task<ActionResult<Quest>> Create([FromBody] QuestModel questModel)
+        public async Task<ActionResult<Quest>> Create([FromBody] QuestVM questModel)
         {
             Quest quest = new Quest();
             quest.Name = questModel.Name;
@@ -37,13 +37,13 @@ namespace WebApplication6.API.Controllers.QuestControllers
         }
 
         [Route("change")]
-        [HttpPost]
-        public async Task<ActionResult<Quest>> Change([FromBody] QuestModel questModel)
+        [HttpPatch]
+        public async Task<ActionResult<Quest>> Change([FromBody] QuestVM questModel)
         {
             Quest quest = _db.Quests.Get(questModel.Id);
             quest.Route = questModel.Route;
             _db.Quests.Update(quest);
-            return quest;
+            return quest; 
         }
     }
 }
