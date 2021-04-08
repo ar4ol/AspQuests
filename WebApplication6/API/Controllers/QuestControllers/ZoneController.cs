@@ -64,5 +64,18 @@ namespace WebApplication6.API.Controllers.QuestControllers
                 return new Zone();
             }
         }
+
+        [Route("visitors/{zoneId}")]
+        [HttpGet]
+        public async Task<ActionResult<string>> Visitors(int zoneId)
+        {
+            Zone zone = _db.Zones.Get(zoneId);
+            object response;
+            response = new {
+                message = "Visitors in zone counted!",
+                count = zone.CountPeople
+            };
+            return JsonSerializer.Serialize(response);
+        }
     }
 }

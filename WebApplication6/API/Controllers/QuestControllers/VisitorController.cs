@@ -81,5 +81,15 @@ namespace WebApplication6.API.Controllers.QuestControllers
             _db.Save();
             return visitor;
         }
+
+        [Route("enterzone/{zoneId}")]
+        [HttpPatch]
+        public async Task<ActionResult<Visitor>> EnterZone([FromBody] VisitorVM visitorModel, int zoneId)
+        {
+
+            ZoneService zoneService = new ZoneService(_db);
+            Visitor visitor = zoneService.EnterZone(visitorModel.Id, zoneId);
+            return visitor;
+        }
     }
 }
