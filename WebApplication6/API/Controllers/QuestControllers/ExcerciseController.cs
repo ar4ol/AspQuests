@@ -29,7 +29,6 @@ namespace WebApplication6.API.Controllers.QuestControllers
         {
             Excercise excercise = new Excercise();
             excercise.Name = excerciseModel.Name;
-            excercise.isCompleted = excerciseModel.isCompleted;
             excercise.Zone = excerciseModel.Zone;
             _db.Excercises.Create(excercise);
             excercise = _db.Excercises.GetAll().Last();
@@ -42,7 +41,6 @@ namespace WebApplication6.API.Controllers.QuestControllers
         {
             Excercise excercise = _db.Excercises.Get(excerciseModel.Id);
             excercise.Name = excerciseModel.Name;
-            excercise.isCompleted = excerciseModel.isCompleted;
             _db.Excercises.Update(excercise);
             return excercise;
         }

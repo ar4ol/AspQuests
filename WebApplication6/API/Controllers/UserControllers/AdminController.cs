@@ -44,7 +44,7 @@ namespace WebApplication6.API.Controllers
         }
 
         [Route("{id}")]
-        [HttpPost]
+        [HttpPatch]
         public async Task<ActionResult<User>> ChangeProfile([FromBody]UserVM UserVM)
         {
             User user = _db.Users.GetAll().ToList().Find(x => x.Id == UserVM.Id);
@@ -58,7 +58,7 @@ namespace WebApplication6.API.Controllers
         }
 
         [Route("deleteuser")]
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult> DeleteUser([FromBody] UserVM UserVM)
         {
             _db.Users.Delete(UserVM.Id);
