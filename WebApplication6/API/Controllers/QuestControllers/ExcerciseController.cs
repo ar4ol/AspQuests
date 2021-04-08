@@ -30,6 +30,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
             Excercise excercise = new Excercise();
             excercise.Name = excerciseModel.Name;
             excercise.ZoneId = excerciseModel.ZoneId;
+            excercise.Description = excerciseModel.Description;
             _db.Excercises.Create(excercise);
             _db.Save();
             excercise = _db.Excercises.GetAll().Last();
@@ -41,7 +42,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
         public async Task<ActionResult<Excercise>> Change([FromBody] ExcerciseVM excerciseModel)
         {
             Excercise excercise = _db.Excercises.Get(excerciseModel.Id);
-            excercise.Name = excerciseModel.Name;
+            excercise.Description = excerciseModel.Description;
             _db.Excercises.Update(excercise);
             return excercise;
         }
