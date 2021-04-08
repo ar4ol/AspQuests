@@ -22,7 +22,7 @@ namespace WebApplication6.API.Controllers
             _db = unitOfWork;
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult<User>> ShowProfile(UserVM UserVM)
         {
             User user = _db.Users.GetAll().ToList().Find(x => x.Login == UserVM.Login);
