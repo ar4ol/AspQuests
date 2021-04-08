@@ -27,7 +27,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
         [HttpPost]
         public async Task<ActionResult<string>> Create([FromBody] VisitorVM visitorModel)
         {
-            string login = _db.Visitors.GetAll().ToList().Find(x => x.Login == visitorModel.Login).Login;
+            Visitor login = _db.Visitors.GetAll().ToList().Find(x => x.Login == visitorModel.Login);
             object response;
             Visitor visitor = new Visitor();
             visitor.Login = visitorModel.Login;
@@ -68,6 +68,17 @@ namespace WebApplication6.API.Controllers.QuestControllers
             visitor.Name = visitorModel.Name;
             visitor.Surname = visitorModel.Surname;
             _db.Visitors.Update(visitor);
+            return visitor;
+        }
+
+        [Route("completetask")]
+        [HttpPatch]
+        public async Task<ActionResult<Visitor>> CompleteTask([FromBody] VisitorVM visitorModel)
+        {
+            CheckCompleteService completeService = new CheckCompleteService(_db);
+            Visitor visitor = completeService.CompleteTask(visitorModel.Id);
+            _db.Visitors.Update(visitor);
+            _db.Save();
             return visitor;
         }
     }
