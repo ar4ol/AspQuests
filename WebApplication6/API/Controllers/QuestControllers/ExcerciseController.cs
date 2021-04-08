@@ -45,6 +45,21 @@ namespace WebApplication6.API.Controllers.QuestControllers
             return excercise;
         }
 
-
+        [Route("delete")]
+        [HttpDelete]
+        public async Task<ActionResult<Excercise>> Delete([FromBody] UserDeleteExVM ueModel)
+        {
+            Excercise excercise = _db.Excercises.Get(ueModel.ExerciseId);
+            User user = excercise.Zone.Quest.User;
+            if(user.Id == ueModel.UserId)
+            {
+                _db.Excercises.Delete(excercise.Id);
+                return excercise;
+            }
+            else
+            {
+                return new Excercise();
+            }
+        }
     }
 }

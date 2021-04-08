@@ -24,7 +24,7 @@ namespace WebApplication6.API.Controllers
         }
 
         [Route("all")]
-        [HttpPost]
+        [HttpGet]
         public async Task<ICollection<User>> GetAll([FromBody] UserVM UserVM)
         {
             User user = _db.Users.GetAll().ToList().Find(x => x.Id == UserVM.Id);
