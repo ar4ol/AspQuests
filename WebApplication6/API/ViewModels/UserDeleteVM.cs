@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace WebApplication6.ViewModels
 {
-    public class UserDeleteExVM
+    public class UserDeleteVM
     {
         public int UserId { get; set; }
 
         public int ExerciseId { get; set; }
+
+        public int ZoneId { get; set; }
+
+        public int QuestId { get; set; }
     }
 }

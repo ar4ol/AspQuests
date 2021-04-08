@@ -45,5 +45,22 @@ namespace WebApplication6.API.Controllers.QuestControllers
             _db.Quests.Update(quest);
             return quest; 
         }
+
+        [Route("delete")]
+        [HttpDelete]
+        public async Task<ActionResult<Quest>> Delete([FromBody] UserDeleteVM udModel)
+        {
+            Quest quest = _db.Quests.GetAll().ToList().Find(x => x.Id == udModel.QuestId);
+            User user = quest.User;
+            if (user.Id == udModel.UserId)
+            {
+                _db.Quests.Delete(quest.Id);
+                return quest;
+            }
+            else
+            {
+                return new Quest();
+            }
+        }
     }
 }
