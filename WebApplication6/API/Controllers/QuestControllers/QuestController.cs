@@ -23,6 +23,15 @@ namespace WebApplication6.API.Controllers.QuestControllers
             _db = unitOfWork;
         }
 
+        [Route("getlistquests")]
+        [HttpPost]
+        public async Task<IEnumerable<Quest>> GetQuest([FromBody] UserVM userModel)
+        {
+
+            List<Quest> list = _db.Quests.GetAll().ToList().FindAll(x => x.UserId == userModel.Id);
+            return list;
+        }
+
         [Route("create")]
         [HttpPost]
         public async Task<ActionResult<Quest>> Create([FromBody] QuestVM questModel)
@@ -41,13 +50,15 @@ namespace WebApplication6.API.Controllers.QuestControllers
         public async Task<ActionResult<Quest>> Change([FromBody] QuestVM questModel)
         {
             Quest quest = _db.Quests.Get(questModel.Id);
+            quest.Name = questModel.Name;
             quest.Route = questModel.Route;
             _db.Quests.Update(quest);
+            _db.Save();
             return quest; 
         }
 
         [Route("delete")]
-        [HttpDelete]
+        [HttpPost]
         public async Task<ActionResult<Quest>> Delete([FromBody] UserDeleteVM udModel)
         {
             Quest quest = _db.Quests.GetAll().ToList().Find(x => x.Id == udModel.QuestId);
@@ -55,6 +66,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
             if (user.Id == udModel.UserId)
             {
                 _db.Quests.Delete(quest.Id);
+                _db.Save();
                 return quest;
             }
             else

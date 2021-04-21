@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SO6+1ZzkBsL1CPanFvpVq/TXk3WXXMBJYXTMhEh4Ka5yaSTvJaGEDe5PGQ50wJylACnk5AplzqzlQA6slTZsNw==",
+  "dgSpecHash": "kXJZEPvjHFRboxidQFQX46cWbrh5lNIhtUtx7fFce0dtCY8F+zEI//8edRjHuiHUzml/efSmhfaWtHRdZvtRpQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Artem\\source\\repos\\WebApplication6\\WebApplication6\\WebApplication6.csproj",
   "expectedPackageFiles": [
@@ -105,7 +105,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Artem\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
   ],
   "logs": []
 }
