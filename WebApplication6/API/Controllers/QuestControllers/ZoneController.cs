@@ -53,25 +53,18 @@ namespace WebApplication6.API.Controllers.QuestControllers
             Zone zone = _db.Zones.GetAll().ToList().Find(x => x.Id == zoneModel.Id);
             zone.CountPeople = zoneModel.CountPeople;
             _db.Zones.Update(zone);
+            _db.Save();
             return zone;
         }
 
         [Route("delete")]
-        [HttpDelete]
+        [HttpPost]
         public async Task<ActionResult<Zone>> Delete([FromBody] UserDeleteVM udModel)
         {
             Zone zone = _db.Zones.GetAll().ToList().Find(x => x.Id == udModel.ZoneId);
-            Quest quest = _db.Quests.Get(zone.QuestId);
-            User user = _db.Users.Get(quest.UserId);
-            if (user.Id == udModel.UserId)
-            {
-                _db.Zones.Delete(zone.Id);
-                return zone;
-            }
-            else
-            {
-                return new Zone();
-            }
+            _db.Zones.Delete(zone.Id);
+            _db.Save();
+            return zone;
         }
 
         [Route("visitors/{zoneId}")]
