@@ -23,6 +23,15 @@ namespace WebApplication6.API.Controllers.QuestControllers
             _db = unitOfWork;
         }
 
+        [Route("getlistzones")]
+        [HttpPost]
+        public async Task<IEnumerable<Zone>> GetZones([FromBody] QuestVM questModel)
+        {
+
+            List<Zone> list = _db.Zones.GetAll().ToList().FindAll(x => x.QuestId == questModel.Id);
+            return list;
+        }
+
         [Route("create")]
         [HttpPost]
         public async Task<ActionResult<Zone>> Create([FromBody] ZoneVM zoneModel)
