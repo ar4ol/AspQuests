@@ -51,6 +51,7 @@ namespace WebApplication6.API.Controllers.QuestControllers
         public async Task<ActionResult<Zone>> Change([FromBody] ZoneVM zoneModel)
         {
             Zone zone = _db.Zones.GetAll().ToList().Find(x => x.Id == zoneModel.Id);
+            zone.Name = zoneModel.Name;
             zone.CountPeople = zoneModel.CountPeople;
             _db.Zones.Update(zone);
             _db.Save();

@@ -32,7 +32,7 @@ namespace WebApplication6.API.Controllers
         [HttpPatch]
         public async Task<ActionResult<User>> ChangeProfile([FromBody] UserVM UserVM)
         {
-            User user = _db.Users.GetAll().ToList().Find(x => x.Login == UserVM.Login);
+            User user = _db.Users.GetAll().ToList().Find(x => x.Id == UserVM.Id);
             user.Name = UserVM.Name;
             user.Surname = UserVM.Surname;
             user.Login = UserVM.Login;

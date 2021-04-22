@@ -58,7 +58,7 @@ namespace WebApplication6.API.Controllers
         }
 
         [Route("deleteuser")]
-        [HttpDelete]
+        [HttpPost]
         public async Task<ActionResult> DeleteUser([FromBody] UserVM UserVM)
         {
             _db.Users.Delete(UserVM.Id);
